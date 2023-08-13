@@ -1,2 +1,3 @@
-# ngs-basic-analysis
-Basic Analysis of Illumina NGS Reads
+# Various Bioinformatics Projects
+
+1. Basic Analysis of Illumina NGS Reads 
