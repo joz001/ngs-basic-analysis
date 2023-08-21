@@ -12,8 +12,9 @@ library(org.Hs.eg.db)
       signif_res = signif_res %>% filter(log2FoldChange > 1)
     else if (type == "down")
       signif_res = signif_res %>% filter(log2FoldChange < -1)
+    else
+      signif_res = signif_res %>% filter(log2FoldChange > 1 | log2FoldChange < -1)
     
-    #signif_genes = gsub("\\..*","",rownames(signif_res))
     ego <- enrichGO(gene = signif_res$ENSG,
                     keyType = "ENSEMBL",
                     OrgDb = org.Hs.eg.db,
@@ -31,16 +32,14 @@ library(org.Hs.eg.db)
   up_go = GO_summary(res_data_frame, "up") # 196
   down_go = GO_summary(res_data_frame, "down") # 79
   all_go = GO_summary(res_data_frame, "")
-  
-  write.xlsx(up_go, "", 
-             sheetName = "Upregulated Genes GO", append = TRUE)
-  write.xlsx(down_go, "", 
-             sheetName = "Downregulated Genes GO", append = TRUE)
-  write.xlsx(all_go, "", 
-             sheetName = "All Genes GO", append = TRUE)
 }
+save_as = ''
+write.xlsx(x = up_go, file = save_as, sheetName = "Upregulated Genes GO", append = TRUE)
+write.xlsx(x = down_go, file = save_as, sheetName = "Downregulated Genes GO", append = TRUE)
+write.xlsx(x = all_go, file = save_as, sheetName = "All Genes GO", append = TRUE)
 
 
+# visualize top 10 up and down pathways 
 {                                                      
   merged = list(down_go[1:10,], up_go[1:10, ])
   df = data.frame('Pathway' = c(merged[[1]]$Description, merged[[2]]$Description),
