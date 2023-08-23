@@ -1,7 +1,7 @@
 # Various Bioinformatics Projects
 ### Collection of Bioinformatics Projects and Data Analysis
 All steps are detailed in the wiki
-1. [RNA-Seq](https://github.com/joz001/various-bioinformatics-projects/wiki/NKAP-Overexpression-RNA%E2%80%90Seq-Analysis)
+1. [RNA-Seq](https://github.com/joz001/various-bioinformatics-projects/wiki/NKAP-Knockdown-RNA%E2%80%90Seq-Analysis)
 
 (WIP)
 1. [Long Read RNA-Seq]()
