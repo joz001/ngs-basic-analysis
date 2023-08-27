@@ -6,7 +6,7 @@ library('org.Hs.eg.db')
 
 # make GO of data from DESeq output
 GO_summary <- function(de_modified, type){
-  signif_res = de_modified %>% filter(!is.na(padj) & padj < 0.05)
+  signif_res = de_modified %>% filter(padj < 0.05)
   if (type == "up")
     signif_res = signif_res %>% filter(log2FoldChange > 1)
   else if (type == "down")
@@ -23,12 +23,12 @@ GO_summary <- function(de_modified, type){
                   readable = TRUE)
   if (length(ego$ID) < 1)
     return(NULL)
-  df = ego %>% dplyr::select(-"ID") %>% data.frame
+  df = ego %>% data.frame
   return(df[order(df$p.adjust),])
 }
 
-up_go = GO_summary(de_modified, "up") # 196
-down_go = GO_summary(de_modified, "down") # 79
+up_go = GO_summary(de_modified, "up")
+down_go = GO_summary(de_modified, "down") 
 all_go = GO_summary(de_modified, "")
 
 save_as = ''
@@ -52,7 +52,7 @@ top_pathways_bar = ggplot(data=df, aes(x=reorder(Pathway, negLogPAdj_Value),
   facet_grid(direction_discrete ~ ., scales = "free", space = "free_x") +
   geom_bar(stat="identity", show.legend = FALSE) +
   geom_text(aes(label = count, y = negLogPAdj_Value), size = 3, hjust = -0.5) +
-  ggtitle("GRAS1 Knockdown Top Pathways") +
+  ggtitle("NKAP Knockdown Top Pathways") +
   coord_flip() +
   labs(x = element_blank(), y = expression(Enrichment~(-log[10](P-Value)))) +
   scale_y_continuous(expand = c(0,0), 
