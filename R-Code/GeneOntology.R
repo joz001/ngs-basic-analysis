@@ -1,8 +1,8 @@
-library('clusterProfiler')
-library('ggplot2')
-library('readxl')
-library('org.Hs.eg.db')
-library('xlsx')
+library(clusterProfiler)
+library(ggplot2)
+library(readxl)
+library(org.Hs.eg.db)
+library(xlsx)
 
 # GO Summary File
 GO_summary <- function(signif_genes){

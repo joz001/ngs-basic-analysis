@@ -1,6 +1,8 @@
-library("DESeq2")
-library('dplyr')
-library('tidyverse')
+library(DESeq2)
+library(dplyr)
+library(tidyverse)
+library(org.Hs.eg.db)
+library(AnnotationDbi)
 
 # DESeq2 function that takes in reads matrix and runs
 # gene_mat: df of read counts from featureCounts output, keeping only counts
@@ -27,7 +29,7 @@ run_deseq <- function(gene_mat, colData){
 }
 
 # read in gene matrix
-gene_mat = read.csv('/data/gras1_rnaseq/gene_counts/gras1_kd_gene_counts', skip=1, sep='\t', row.names=1) %>%
+gene_mat = read.csv('', skip=1, sep='\t', row.names=1) %>%
   dplyr::select(c(6:11))
 
 # set colData according to each experiment

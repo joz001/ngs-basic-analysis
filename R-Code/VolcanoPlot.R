@@ -1,6 +1,4 @@
 library('ggplot2')
-library("org.Hs.eg.db")
-library("AnnotationDbi")
 
 # plot genes in volcano plot
 make_volcano <- function(de_modified, title){
